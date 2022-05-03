@@ -17,8 +17,8 @@ class ExportLanguagePane(QtWidgets.QGroupBox):
         self.widget = QtWidgets.QWidget()  # Widget that contains the collection of Vertical Box
         self.vbox = QtWidgets.QVBoxLayout()  # The Vertical Box that contains the Horizontal Boxes of  labels and buttons
 
-        for language in self.languages:
-            object = QtWidgets.QCheckBox(language)
+        for language in self.languages.keys():
+            object = QtWidgets.QCheckBox(language.capitalize().replace('_', ' '))
             self.languageCheckBoxes.append(object)
             self.vbox.addWidget(self.languageCheckBoxes[-1])
         self.widget.setLayout( self.vbox )
