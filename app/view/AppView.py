@@ -3,6 +3,7 @@ from PyQt6 import QtCore
 from PyQt6.QtWidgets import QLabel
 
 from app.Helpers.Names import Names
+from app.controller.Controller import Controller
 from app.view.ExportLanguagePane import ExportLanguagePane
 from app.view.InfoPane import InfoPane
 from app.view.PatientDataPane import PatientDataPane
@@ -30,8 +31,10 @@ class AppView(QtWidgets.QMainWindow):
         self.iPane = InfoPane(Names.AppViewPane.infoPane)
 
         # Buttons
-        self.proceedButton = QtWidgets.QPushButton(Names.AppViewPane.proceedButton)
+        self.proceedButton = QtWidgets.QPushButton(Names.AppViewPane.proceedButton, self)
         self.clearButton = QtWidgets.QPushButton(Names.AppViewPane.clearButton)
+
+        # Connections
 
         # Creating Window Label
         self.titleLabel = QLabel(Names.AppViewPane.title)
@@ -44,4 +47,9 @@ class AppView(QtWidgets.QMainWindow):
         self.lay.addWidget( self.iPane, 9, 0, 4, 4 )
         self.lay.addWidget( self.proceedButton, 11, 4,1,1)
         self.lay.addWidget( self.clearButton, 10, 4,1,1)
+
+        #Roam controller
+        self.controller = Controller(self.pdPane, self.tdPane,self.elPane,self.iPane)
+        self.proceedButton.clicked.connect(self.controller.exportPDF)
+
 
