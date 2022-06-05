@@ -3,6 +3,7 @@ from googletrans import Translator
 
 from app.Helpers.Names import Names
 
+
 class PdfTemplate(FPDF):
     def __init__(self, lang = 'en'):
         super().__init__()
